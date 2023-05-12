@@ -1,6 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#ifdef _WIN32
+# define CLEAR_SCREEN system("cls")
+#else
+# define CLEAR_SCREEN puts("\x1b[H\x1b[2J")
+#endif
+
 struct Locacao{
   char cep[255];
   char rua[255];
@@ -26,79 +32,79 @@ struct Fornecedor{
 }tpFornecedor;
 
 struct Fornecedor fornecedor;
-struct Fornecedor fornecedores[100]; 
-int qtdFornecedores = 0; 
+struct Fornecedor fornecedores[100];
+int qtdFornecedores = 0;
 
 void cadastrarFornecedor(){
-  system("clear");
+  CLEAR_SCREEN;
   printf("\nInforme o cnpj do Fornecedor: ");
   scanf("%d", tpFornecedor.cnpjFornecedor);
   getc(stdin);
 
-  system("clear");
+    CLEAR_SCREEN;
   printf("\nInforme o nome do Fornecedor: ");
-  fflush(stdin);      
+  fflush(stdin);
   fgets(tpFornecedor.nomeFornecedor, 255, stdin);
-        
-  system("clear");
+
+  CLEAR_SCREEN;
   printf("\nInforme o id do Fornecedor: ");
   fflush(stdin);
   fgets(tpFornecedor.idFornecedor, 255, stdin);
 
-  system("clear");
+  CLEAR_SCREEN;
   printf("\nInforme o telefone do Fornecedor: ");
   fflush(stdin);
   fgets(tpFornecedor.telefoneFornecedor, 255, stdin);
 
-  system("clear");
+  CLEAR_SCREEN;
   printf("\nInforme o cep da Locacao: ");
   fflush(stdin);
   fgets(tpFornecedor.locacao.cep, 255, stdin);
 
-  system("clear");
+  CLEAR_SCREEN;
   printf("\nInforme a rua da Locacao: ");
   fflush(stdin);
   fgets(tpFornecedor.locacao.rua, 255, stdin);
 
-  system("clear");
+  CLEAR_SCREEN;
   printf("\nInforme o bairro da Locacao: ");
   fflush(stdin);
   fgets(tpFornecedor.locacao.bairro, 255, stdin);
 
-  system("clear");
+  CLEAR_SCREEN;
   printf("\nInforme o numero da Locacao: ");
   fflush(stdin);
   fgets(tpFornecedor.locacao.numero, 255, stdin);
 
-  system("clear");
+  CLEAR_SCREEN;
   printf("\nInforme o numero de serie do Material: ");
   fflush(stdin);
   fgets(tpFornecedor.material.numeroSerie, 255, stdin);
 
-  system("clear");
+  CLEAR_SCREEN;
   printf("\nInforme o nome do material: ");
   fflush(stdin);
   fgets(tpFornecedor.material.nomeMaterial, 255, stdin);
 
-  system("clear");
+  CLEAR_SCREEN;
   printf("\nInforme o modelo do material: ");
   fflush(stdin);
   fgets(tpFornecedor.material.modeloMaterial, 255, stdin);
 
-  system("clear");
+  CLEAR_SCREEN;
   printf("\nInforme o preco do material: ");
   fflush(stdin);
   fgets(tpFornecedor.material.precoMaterial, 255, stdin);
 
-  system("clear");
+  CLEAR_SCREEN;
   printf("\nInforme o tipo do material: ");
   fflush(stdin);
   fgets(tpFornecedor.material.tipoMaterial, 255, stdin);
-        
-  system("clear");
+
+  CLEAR_SCREEN;
   printf("\n\t\t\tDados Cadastrados com sucesso!!!");
-  
-  fornecedores[qtdFornecedores] = tpFornecedor; 
+
+  fornecedores[qtdFornecedores] = tpFornecedor;
   qtdFornecedores++;
 }
 
@@ -138,18 +144,18 @@ int main(void) {
         break;
 
       case 2:
-        system("clear");
+        CLEAR_SCREEN;
         listarFornecedores(fornecedores, qtdFornecedores);
         break;
 
       case 3:
         printf("\nSaindo...\n");
         break;
-      
+
       default:
         printf("\nOpção inválida. Digite novamente.\n");
     }
 }while(op!=3);
-  
+
   return 0;
 }
